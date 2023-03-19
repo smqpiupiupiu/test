@@ -26,6 +26,24 @@ const routes = [
     component: ()=>import('@/views/User/EditUser')
   },
 
+    //admin
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: ()=>import('@/views/Admin/list')
+  },
+  {
+    path: '/addAdmin',
+    name: 'AddAdmin',
+    component: ()=>import('@/views/Admin/Add')
+  },
+  {
+    path: '/editAdmin',
+    name: 'EditAdmin',
+    component: ()=>import('@/views/Admin/Edit')
+  },
+
+
 ]
 
 const router = new VueRouter({

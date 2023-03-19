@@ -23,6 +23,15 @@
       <el-menu-item index="/user">员工列表</el-menu-item>
       <el-menu-item index="/addUser">新增员工</el-menu-item>
       </el-submenu>
+
+        <el-submenu index="/">
+          <template slot="title">
+            <i class="el-icon-s-management"></i>
+            <span>管理员操作</span>
+          </template>
+          <el-menu-item index="/admin">管理员列表</el-menu-item>
+          <el-menu-item index="/addAdmin">新增管理员</el-menu-item>
+        </el-submenu>
       </el-menu>
       </div>
     <!-- 主体 -->

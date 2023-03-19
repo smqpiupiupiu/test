@@ -1,8 +1,8 @@
 package com.example.springboot.service.Impl;
 
-import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
+import com.example.springboot.controller.request.BaseRequest;
 import com.example.springboot.controller.request.UserPageRequest;
 import com.example.springboot.entity.User;
 import com.example.springboot.mapper.UserMapper;
@@ -28,12 +28,17 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public PageInfo<User> page(BaseRequest baseRequest) {
+        return null;
+    }
+
+    @Override
     @Transactional
-    public Object page(UserPageRequest userPageRequest) {
+    public PageInfo<User> page(UserPageRequest userPageRequest) {
 //        //String name = userPageRequest.getName();
         PageHelper.startPage(userPageRequest.getPageNum(), userPageRequest.getPageSize());
         List<User> users = userMapper.listByCondition(userPageRequest);
-        return new PageInfo<>(users);
+        return new PageInfo<User>(users);
     }
 
     @Override

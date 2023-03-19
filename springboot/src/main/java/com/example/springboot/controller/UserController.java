@@ -5,7 +5,6 @@ import com.example.springboot.common.Result;
 import com.example.springboot.controller.request.UserPageRequest;
 import com.example.springboot.entity.User;
 import com.example.springboot.service.IUserService;
-import jdk.nashorn.internal.ir.IdentNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

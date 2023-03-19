@@ -2,29 +2,28 @@ package com.example.springboot.mapper;
 
 import com.example.springboot.controller.request.BaseRequest;
 import com.example.springboot.controller.request.UserPageRequest;
+import com.example.springboot.entity.Admin;
 import com.example.springboot.entity.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
 //@Repository
 //注册成spring的bean 可以在controller中调用
-public interface UserMapper {
+public interface AdminMapper {
     //操作数据库 方法
 //    @Select("select * from user") 注解
     //xml方式 需要mybatis配置
-    List<User> listUsers();
+    List<Admin> list();
 
-    List<User> listByCondition(BaseRequest baseRequest);
+    List<Admin> listByCondition(BaseRequest baseRequest);//多态 通用,调用时候再传实际的类
 
-    void save(User user);
+    void save(Admin obj);
 
-    User getById(Integer id);
+    Admin getById(Integer id);
 
-    void updateById(User user);
+    void updateById(Admin user);
 
     void deleteById(Integer id);
 }

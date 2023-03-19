@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.AdminMapper">
+    <insert id="save">
+        insert into admin(name,username,phone,email)
+        values (#{name},#{username},#{phone},#{email})
+    </insert>
+
+    <update id="updateById">
+        update admin set  name=#{name},username =#{username},phone=#{phone},email=#{email},updateTime=#{updateTime}
+        where id = #{id}
+    </update>
+    <delete id="deleteById">
+        delete from admin where id = #{id}
+    </delete>
+
+    <select id="list" resultType="com.example.springboot.entity.Admin">
+-- 这里面不能访问数组要访问对象 可以在usermapper里多条语句映射
+        select * from admin
+    </select>
+
+    <select id="listByCondition" resultType="com.example.springboot.entity.Admin">
+        select * from admin
+        <where>
+            <if test="username != null and username !=''">
+                name LIKE CONCAT('%', #{username}, '%')
+            </if>
+            <if test="phone != null and phone !=''">
+                name LIKE CONCAT('%', #{phone}, '%')
+            </if>
+            <if test="email != null and email !=''">
+                name LIKE CONCAT('%', #{email}, '%')
+            </if>
+        </where>
+    </select>
+    <select id="getById" resultType="com.example.springboot.entity.Admin">
+        select * from admin where id = #{id}
+    </select>
+
+</mapper>
+<!--然后就是select里面不要乱加注释 www不然会疯狂报错-->

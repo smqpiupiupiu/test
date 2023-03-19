@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.UserMapper">
+    <insert id="save">
+        insert into user(name,username,sex,phone,email,department)
+        values (#{name},#{username},#{sex},#{phone},#{email},#{department})
+    </insert>
+
+    <update id="updateById">
+        update user set name =#{name},sex=#{sex},phone=#{phone},email=#{email},department=#{department},updateTime=#{updateTime}
+        where id = #{id}
+    </update>
+    <delete id="deleteById">
+        delete from user where id = #{id}
+    </delete>
+
+    <select id="listUsers" resultType="com.example.springboot.entity.User">
+-- 这里面不能访问数组要访问对象 可以在usermapper里多条语句映射
+        select * from user
+    </select>
+
+    <select id="listByCondition" resultType="com.example.springboot.entity.User">
+        select * from user
+        <where>
+            <if test="name != null and name !=''">
+                name LIKE CONCAT('%', #{name}, '%')
+            </if>
+        </where>
+    </select>
+    <select id="getById" resultType="com.example.springboot.entity.User">
+        select * from user where id = #{id}
+    </select>
+</mapper>
+<!--然后就是select里面不要乱加注释 www不然会疯狂报错-->

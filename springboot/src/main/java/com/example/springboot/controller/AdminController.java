@@ -2,6 +2,7 @@ package com.example.springboot.controller;
 
 
 import com.example.springboot.common.Result;
+import com.example.springboot.controller.dto.LoginDTO;
 import com.example.springboot.controller.request.AdminPageRequest;
 import com.example.springboot.controller.request.BaseRequest;
 import com.example.springboot.controller.request.UserPageRequest;
@@ -18,6 +19,16 @@ import java.util.List;
 public class AdminController {
     @Autowired
     IAdminService adminService;
+
+   //登录
+    @PostMapping("/login")
+    public Result login(@RequestBody LoginRequest request){
+        LoginDTO login =adminService.login(request);
+        if (login == null) {
+            return Result.error("用户名或密码错误");
+        }
+        return Result.success(login);
+    }
 
     //改
     @GetMapping("/{id}")
